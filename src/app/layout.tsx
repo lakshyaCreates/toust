@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import { lemonSqueezySetup } from "@lemonsqueezy/lemonsqueezy.js";
+
 import "./globals.css";
 import Modals from "@/modals";
 import Providers from "@/providers";

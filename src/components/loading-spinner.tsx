@@ -15,7 +15,7 @@ export const LoadingSpinner = ({
                 <ImSpinner3 className={cn("size-3 animate-spin")} />
             ) : (
                 <div className="flex h-screen items-center justify-center">
-                    <ImSpinner3 className="size-6 animate-spin" />;
+                    <ImSpinner3 className="size-6 animate-spin" />
                 </div>
             )}
         </div>
