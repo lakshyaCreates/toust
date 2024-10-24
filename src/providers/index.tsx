@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useIsMounted } from "usehooks-ts";
 
 import { LoadingSpinner } from "@/components/loading-spinner";
+import { Toaster } from "@/components/ui/sonner";
 
 import { ThemeProvider } from "./theme-provider";
 
@@ -32,6 +33,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
                     disableTransitionOnChange
                 >
                     {children}
+                    <Toaster />
                 </ThemeProvider>
             )}
         </>
