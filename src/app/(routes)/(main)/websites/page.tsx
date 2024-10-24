@@ -1,3 +1,8 @@
+import { auth } from "@/auth";
+
 export default async function WebsitesPage() {
-    return <div></div>;
+    const session = await auth();
+    const user = session?.user;
+
+    return <div>{JSON.stringify(user)}</div>;
 }
