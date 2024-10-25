@@ -20,7 +20,10 @@ export async function signin(values: z.infer<typeof SigninFormValidator>) {
             return { status: 500, message: "User not found" };
         }
 
-        if (existingUser.plan === "GUEST") {
+        if (
+            existingUser.plan === "GUEST" ||
+            existingUser.orderStatus !== "PAID"
+        ) {
             return {
                 status: 500,
                 message: "This email account has not purchased Toust!",
@@ -29,10 +32,17 @@ export async function signin(values: z.infer<typeof SigninFormValidator>) {
 
         if (existingUser && existingUser.email) {
             try {
-                await signIn("resend", {
-                    email,
-                    redirect: false,
-                });
+                if (existingUser.orderStatus === "PAID") {
+                    await signIn("resend", {
+                        email,
+                        redirect: false,
+                    });
+                } else {
+                    return {
+                        status: 500,
+                        message: "This email account has not purchased Toust!",
+                    };
+                }
 
                 return {
                     status: 200,

@@ -7,33 +7,30 @@ generator client {
     provider = "prisma-client-js"
 }
 
-<<<<<<< HEAD
 enum Plan {
     GUEST
     APPETIZER
     MAIN_COURSE
 }
 
+enum OrderStatus {
+    CREATED
+    PAYMENT_PENDING
+    PAID
+}
+
 model User {
-    id            String    @id @default(cuid())
+    id            String      @id @default(cuid())
     name          String?
-    email         String    @unique
-=======
-model User {
-    id            String          @id @default(cuid())
-    name          String?
-    email         String          @unique
->>>>>>> 253ee88f581a9bc23ba07d5aa4304063103af484
+    email         String      @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
-<<<<<<< HEAD
-    plan          Plan      @default(GUEST)
-=======
-    // Optional for WebAuthn support
-    Authenticator Authenticator[]
->>>>>>> 253ee88f581a9bc23ba07d5aa4304063103af484
+    plan          Plan        @default(GUEST)
+    orderId       String?
+    orderStatus   OrderStatus @default(CREATED)
+    paymentId     String?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -77,22 +74,3 @@ model VerificationToken {
 
     @@id([identifier, token])
 }
-<<<<<<< HEAD
-=======
-
-// Optional for WebAuthn support
-model Authenticator {
-    credentialID         String  @unique
-    userId               String
-    providerAccountId    String
-    credentialPublicKey  String
-    counter              Int
-    credentialDeviceType String
-    credentialBackedUp   Boolean
-    transports           String?
-
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@id([userId, credentialID])
-}
->>>>>>> 253ee88f581a9bc23ba07d5aa4304063103af484

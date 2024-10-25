@@ -74,4 +74,8 @@ body {
     body {
         @apply h-full;
     }
+
+    .screenCenter {
+        @apply flex h-full min-h-screen flex-col items-center justify-center gap-y-2;
+    }
 }

@@ -29,3 +29,17 @@ export async function getUserById(id: string) {
         return null;
     }
 }
+
+export async function getUserByOrderId(orderId: string) {
+    try {
+        const user = await db.user.findFirst({
+            where: {
+                orderId,
+            },
+        });
+
+        return user;
+    } catch {
+        return null;
+    }
+}
