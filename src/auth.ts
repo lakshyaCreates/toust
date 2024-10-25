@@ -3,9 +3,13 @@ import NextAuth from "next-auth";
 import Resend from "next-auth/providers/resend";
 
 import { PrismaAdapter } from "@auth/prisma-adapter";
+<<<<<<< HEAD
 import { Plan } from "@prisma/client";
 
 import { getUserById } from "./prisma/queries/get/user";
+=======
+
+>>>>>>> 253ee88f581a9bc23ba07d5aa4304063103af484
 import db from "@/prisma";
 
 export const {
@@ -14,11 +18,14 @@ export const {
     signIn,
     signOut,
 } = NextAuth({
+<<<<<<< HEAD
     pages: {
         signIn: "/signin",
         verifyRequest: "/signin/email-sent",
         error: "/signin/error",
     },
+=======
+>>>>>>> 253ee88f581a9bc23ba07d5aa4304063103af484
     providers: [
         Resend({
             apiKey: process.env.AUTH_RESEND_KEY,
@@ -27,6 +34,7 @@ export const {
     ],
     adapter: PrismaAdapter(db),
     session: { strategy: "jwt" },
+<<<<<<< HEAD
     callbacks: {
         async session({ token, session }) {
             if (!token.email) {
@@ -63,4 +71,6 @@ export const {
             return token;
         },
     },
+=======
+>>>>>>> 253ee88f581a9bc23ba07d5aa4304063103af484
 });
