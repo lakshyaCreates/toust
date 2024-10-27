@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+.toastContainer {
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 9999;
+}
+
+.toast {
+    position: absolute;
+    right: 0;
+    display: flex;
+    gap: 1rem;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transform-origin: top right;
+    transition:
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.icon {
+    background-size: cover;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+}
+
+.details {
+    display: flex;
+    width: 16rem;
+    padding: 3px 0;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.timeAgo {
+    width: 2.5rem;
+    text-align: right;
+    font-size: 0.75rem;
+    color: #333;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(150%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

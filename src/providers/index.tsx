@@ -1,6 +1,9 @@
 "use client";
 
+import { SessionProvider } from "next-auth/react";
 import { useEffect, useState } from "react";
+
+import { Session } from "next-auth";
 
 import { useIsMounted } from "usehooks-ts";
 
@@ -11,7 +14,13 @@ import { ThemeProvider } from "./theme-provider";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({
+    children,
+    session,
+}: {
+    children: React.ReactNode;
+    session: any;
+}) {
     const [ok, setOk] = useState(false);
     const isMounted = useIsMounted();
 
@@ -24,7 +33,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     if (!ok) return <LoadingSpinner />;
 
     return (
-        <>
+        <SessionProvider session={session}>
             {ok && (
                 <ThemeProvider
                     attribute="class"
@@ -36,6 +45,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
                     <Toaster />
                 </ThemeProvider>
             )}
-        </>
+        </SessionProvider>
     );
 }

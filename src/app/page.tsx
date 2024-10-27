@@ -2,9 +2,14 @@ import Script from "next/script";
 
 import { PricingCard } from "@/components/pricing-card";
 
-export default function HomePage() {
+import { currentUser } from "@/helpers/current-user";
+
+export default async function HomePage() {
+    const user = await currentUser();
+
     return (
         <div className="screenCenter">
+            {user?.name}
             <div className="flex h-full items-center gap-x-2">
                 <PricingCard plan="APPETIZER" />
                 <PricingCard plan="MAIN_COURSE" />
