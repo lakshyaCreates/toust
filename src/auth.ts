@@ -15,7 +15,9 @@ export const {
 } = NextAuth({
     adapter: PrismaAdapter(db),
     session: { strategy: "jwt" },
-    pages: {},
+    pages: {
+        signIn: "/",
+    },
     callbacks: {
         async session({ token, session }) {
             if (!token.email) {
