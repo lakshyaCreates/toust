@@ -3,9 +3,8 @@ import Link from "next/link";
 
 import { signIn, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
+import { Wrapper } from "@/components/wrapper";
 import { getCurrentUser } from "@/helpers";
-
-import { Wrapper } from "./wrapper";
 
 export const Header = async () => {
     const user = await getCurrentUser();
