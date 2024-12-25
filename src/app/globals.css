@@ -89,5 +89,6 @@ body {
     html,
     body {
         @apply h-full;
+        pointer-events: auto !important;
     }
 }

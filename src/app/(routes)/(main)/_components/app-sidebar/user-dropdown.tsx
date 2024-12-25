@@ -3,11 +3,17 @@
 import {
     BadgeCheck,
     Bell,
+    ChevronRight,
     ChevronsUpDown,
     CreditCard,
     LogOut,
+    Moon,
+    Palette,
     Sparkles,
+    SunMoon,
 } from "lucide-react";
+
+import { useTheme } from "next-themes";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -26,7 +32,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar";
-import { signOutUser } from "@/features/auth/actions/signout-user";
+import { signOutUser } from "@/features/auth";
 
 function generateAvatarFallback(name: string): string {
     if (!name.trim()) {
@@ -55,6 +61,7 @@ export function UserDropdown({
     };
 }) {
     const { isMobile } = useSidebar();
+    const { setTheme } = useTheme();
 
     return (
         <SidebarMenu>
@@ -117,6 +124,43 @@ export function UserDropdown({
                             <DropdownMenuItem>
                                 <BadgeCheck />
                                 Account
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger className="flex w-full items-center justify-between">
+                                        <div className="flex items-center gap-2">
+                                            <Palette size={16} />
+                                            Switch Theme
+                                        </div>
+                                        <ChevronRight size={16} />
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent side="right">
+                                        <DropdownMenuItem
+                                            onClick={() => {
+                                                setTheme("light");
+                                            }}
+                                        >
+                                            <Sparkles />
+                                            Light
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem
+                                            onClick={() => {
+                                                setTheme("dark");
+                                            }}
+                                        >
+                                            <Moon />
+                                            Dark
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem
+                                            onClick={() => {
+                                                setTheme("system");
+                                            }}
+                                        >
+                                            <SunMoon />
+                                            System
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
