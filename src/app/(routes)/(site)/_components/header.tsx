@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { signIn, signOut } from "@/auth";
+import { auth, signIn, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { Wrapper } from "@/components/wrapper";
-import { getCurrentUser } from "@/helpers";
 
 export const Header = async () => {
-    const user = await getCurrentUser();
+    const session = await auth();
+    const user = session?.user;
 
     return (
         <header className="h-16 w-screen border-b bg-background">

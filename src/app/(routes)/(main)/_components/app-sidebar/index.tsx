@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { auth } from "@/auth";
 import {
     Sidebar,
     SidebarContent,
@@ -11,7 +12,6 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { getCurrentUser } from "@/helpers";
 import { getUserById } from "@/prisma/helpers/user";
 
 import { Nav } from "./nav";
@@ -20,7 +20,8 @@ import { UserDropdown } from "./user-dropdown";
 export async function AppSidebar({
     ...props
 }: React.ComponentProps<typeof Sidebar>) {
-    const currentUser = await getCurrentUser();
+    const session = await auth();
+    const currentUser = session?.user;
     if (!currentUser || !currentUser.id) redirect("/");
 
     const user = await getUserById(currentUser.id);
@@ -34,7 +35,7 @@ export async function AppSidebar({
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <Link href="/">
-                                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                                     <Image
                                         src={`/toust-icon.png`}
                                         alt="Toust Icon"
