@@ -1,3 +1,5 @@
+import { ConfirmationDialog } from "@/features/confirmation-dialog";
+
 import { ThemeProvider } from "./theme-provider";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -10,6 +12,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
                 disableTransitionOnChange
             >
                 {children}
+                {/* Globally used Dialogs */}
+                <ConfirmationDialog />
             </ThemeProvider>
         </>
     );
