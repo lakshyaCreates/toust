@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { auth } from "@/auth";
 import { getWebsiteByUserId } from "@/prisma/helpers/websites";
 
@@ -18,9 +20,11 @@ export default async function WebsitesSlot() {
                     key={`website-${i}`}
                     className="h-20 w-72 rounded border bg-accent px-6 py-4"
                 >
-                    <h3 className="text-lg font-medium tracking-tight md:text-xl">
-                        {website.domain}
-                    </h3>
+                    <Link href={`/dashboard/${website.domain}`}>
+                        <h3 className="text-lg font-medium tracking-tight md:text-xl">
+                            {website.domain}
+                        </h3>
+                    </Link>
                     <p className="line-clamp-1 text-sm text-muted-foreground">
                         {website.note}
                     </p>
