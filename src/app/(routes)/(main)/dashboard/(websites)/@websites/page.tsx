@@ -1,11 +1,10 @@
 import Link from "next/link";
 
-import { auth } from "@/auth";
-import { getWebsiteByUserId } from "@/prisma/helpers/websites";
+import { ensureUser } from "@/helpers/ensure-user";
+import { getWebsiteByUserId } from "@/prisma/helpers";
 
 export default async function WebsitesSlot() {
-    const session = await auth();
-    const userId = session!.user!.id!;
+    const userId = await ensureUser();
 
     const websites = await getWebsiteByUserId(userId);
 

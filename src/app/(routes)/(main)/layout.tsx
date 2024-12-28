@@ -1,13 +1,10 @@
-import { redirect } from "next/navigation";
-
-import { auth } from "@/auth";
 import { Separator } from "@/components/ui/separator";
 import {
     SidebarInset,
     SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { getUserById } from "@/prisma/helpers/user";
+import { ensureUser } from "@/helpers/ensure-user";
 
 import { AppSidebar } from "./_components/app-sidebar";
 
@@ -18,11 +15,7 @@ export default async function MainLayout({
     children: React.ReactNode;
     breadcrumbs: React.ReactNode;
 }) {
-    const session = await auth();
-    if (!session || !session.user || !session.user.id) redirect("/");
-
-    const user = await getUserById(session.user.id);
-    if (!user || !user.id) redirect("/");
+    const userId = await ensureUser();
 
     return (
         <>

@@ -1,3 +1,5 @@
+import { ensureUser } from "@/helpers/ensure-user";
+
 export default async function DashboardSlugLayout({
     children,
     manage,
@@ -7,6 +9,8 @@ export default async function DashboardSlugLayout({
     manage: React.ReactNode;
     settings: React.ReactNode;
 }) {
+    await ensureUser();
+
     return (
         <div className="space-y-2 divide-y">
             {children}

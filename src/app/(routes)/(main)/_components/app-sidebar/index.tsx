@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
-import { auth } from "@/auth";
 import {
     Sidebar,
     SidebarContent,
@@ -12,7 +10,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { getUserById } from "@/prisma/helpers/user";
+import { ensureUser } from "@/helpers/ensure-user";
+import { getUserById } from "@/prisma/helpers";
 
 import { Nav } from "./nav";
 import { UserDropdown } from "./user-dropdown";
@@ -20,13 +19,8 @@ import { UserDropdown } from "./user-dropdown";
 export async function AppSidebar({
     ...props
 }: React.ComponentProps<typeof Sidebar>) {
-    const session = await auth();
-    const currentUser = session?.user;
-    if (!currentUser || !currentUser.id) redirect("/");
-
-    const user = await getUserById(currentUser.id);
-
-    if (!user || !user.id) redirect("/");
+    const userId = await ensureUser();
+    const user = await getUserById(userId);
 
     return (
         <Sidebar variant="inset" {...props}>
@@ -63,9 +57,9 @@ export async function AppSidebar({
             <SidebarFooter>
                 <UserDropdown
                     user={{
-                        email: user.email,
-                        avatar: user.image!,
-                        name: user.name!,
+                        email: user!.email,
+                        avatar: user!.image!,
+                        name: user!.name!,
                     }}
                 />
             </SidebarFooter>
