@@ -7,6 +7,18 @@ generator client {
     provider = "prisma-client-js"
 }
 
+model Toast {
+    id String @id @default(cuid())
+
+    title   String
+    author  String
+    timeAgo String
+    order   Int
+
+    websiteId String
+    website   Website @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+}
+
 model Website {
     id     String  @id @default(cuid())
     domain String  @unique
@@ -18,6 +30,8 @@ model Website {
     waitFor       Int @default(1000)
     toastEvery    Int @default(1500)
     toastDuration Int @default(8000)
+
+    Toast Toast[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
