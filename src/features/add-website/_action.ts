@@ -25,5 +25,36 @@ export async function addWebsite({
 
     revalidateTag("user-websites");
 
+    data.map(
+        async (d) =>
+            await db.toast.create({
+                data: {
+                    ...d,
+                    websiteId: res.id,
+                },
+            }),
+    );
+
     return res;
 }
+
+const data = [
+    {
+        title: "Sample Toast 01",
+        author: "Netflix",
+        timeAgo: "now",
+        order: 0,
+    },
+    {
+        title: "Sample Toast 02",
+        author: "Amazon",
+        timeAgo: "3m ago",
+        order: 1,
+    },
+    {
+        title: "Sample Toast 03",
+        author: "Stripe",
+        timeAgo: "1h ago",
+        order: 2,
+    },
+];
