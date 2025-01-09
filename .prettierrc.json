@@ -1,0 +1,21 @@
+{
+    "tabWidth": 4,
+    "semi": true,
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "importOrder": [
+        "server-only",
+        "react",
+        "^next",
+        "<THIRD_PARTY_MODULES>",
+        "^@/workspace/(.*)$",
+        "^@/workspace/db",
+        "^@/workspace/db/(.*)$",
+        "^@/workspace/ui/(.*)$",
+        "^@/workspace/ui/components(.*)$",
+        "^@/lib/(.*)$",
+        "^./(.*)$"
+    ],
+    "importOrderSeparation": true,
+    "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
