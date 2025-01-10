@@ -25,7 +25,7 @@ export const Header = async () => {
                     ) : (
                         <>
                             <Button size={"sm"} asChild>
-                                <Link href={"/signin"}>Sign in</Link>
+                                <Link href={"/sign-in"}>Sign in</Link>
                             </Button>
                         </>
                     )}
