@@ -4,6 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@workspace/ui/globals.css";
 import { cn } from "@workspace/ui/lib/utils";
 
+import Providers from "@/components/providers";
+
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -33,7 +35,7 @@ export default function RootLayout({
                     geistMono.variable,
                 )}
             >
-                {children}
+                <Providers>{children}</Providers>
             </body>
         </html>
     );
