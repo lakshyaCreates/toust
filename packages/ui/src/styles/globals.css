@@ -70,4 +70,8 @@
     body {
         @apply h-full;
     }
+
+    .wrap {
+        @apply max-w-6xl mx-auto px-6 md:px-12;
+    }
 }
