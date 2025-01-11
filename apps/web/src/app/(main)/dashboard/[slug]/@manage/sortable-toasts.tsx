@@ -19,6 +19,7 @@ import { Button } from "@workspace/ui/components/button";
 import {
     Card,
     CardContent,
+    CardDescription,
     CardHeader,
     CardTitle,
 } from "@workspace/ui/components/card";
@@ -30,6 +31,7 @@ import {
     FormLabel,
 } from "@workspace/ui/components/form";
 import { Input } from "@workspace/ui/components/input";
+import { Separator } from "@workspace/ui/components/separator";
 import {
     Sortable,
     SortableDragHandle,
@@ -102,50 +104,54 @@ export const SortableToasts = ({
                     className="space-y-2"
                 >
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-1">
-                            <Button
-                                onClick={() => {
-                                    append({
-                                        id: cuid(),
-                                        text: `New Toast ${fields.length + 1}`,
-                                        order: fields.length,
-                                        author: "",
-                                        timeAgo: "",
-                                        src: "./toust-icon.png",
-                                        websiteId,
-                                    });
+                        <CardTitle className="flex items-center justify-between">
+                            <h3>Manage</h3>
+                            <div>
+                                <Button
+                                    onClick={() => {
+                                        append({
+                                            id: cuid(),
+                                            text: `New Toast ${fields.length + 1}`,
+                                            order: fields.length,
+                                            author: "",
+                                            timeAgo: "",
+                                            src: "./toust-icon.png",
+                                            websiteId,
+                                        });
 
-                                    // updateFieldOrder();
-                                }}
-                                disabled={isDisabled}
-                                type="button"
-                                size={"icon"}
-                                variant={"ghost"}
-                            >
-                                <PlusIcon />
-                            </Button>
-                            <Button
-                                type="button"
-                                onClick={() => {
-                                    replace(toasts);
-                                }}
-                                disabled={isDisabled}
-                                size={"icon"}
-                                variant={"ghost"}
-                            >
-                                <RefreshCcw />
-                            </Button>
-                            <Button
-                                disabled={isDisabled}
-                                type="submit"
-                                size={"icon"}
-                                variant={"ghost"}
-                            >
-                                <SaveIcon />
-                            </Button>
+                                        // updateFieldOrder();
+                                    }}
+                                    disabled={isDisabled}
+                                    type="button"
+                                    size={"icon"}
+                                    variant={"ghost"}
+                                >
+                                    <PlusIcon />
+                                </Button>
+                                <Button
+                                    type="button"
+                                    onClick={() => {
+                                        replace(toasts);
+                                    }}
+                                    disabled={isDisabled}
+                                    size={"icon"}
+                                    variant={"ghost"}
+                                >
+                                    <RefreshCcw />
+                                </Button>
+                                <Button
+                                    disabled={isDisabled}
+                                    type="submit"
+                                    size={"icon"}
+                                    variant={"ghost"}
+                                >
+                                    <SaveIcon />
+                                </Button>
+                            </div>
                         </CardTitle>
+                        <Separator className="!-mb-2 !mt-2" />
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="">
                         <Sortable
                             value={fields}
                             onMove={({ activeIndex, overIndex }) => {
