@@ -103,7 +103,7 @@ export const SortableToasts = ({
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-2"
                 >
-                    <CardHeader>
+                    <CardHeader className="-mt-1">
                         <CardTitle className="flex items-center justify-between">
                             <h3>Manage</h3>
                             <div>
