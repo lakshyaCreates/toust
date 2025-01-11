@@ -17,8 +17,8 @@ export const Header = async () => {
                 <div className="flex items-center gap-2">
                     {user ? (
                         <>
-                            <Button size={"sm"} variant={"outline"}>
-                                Dashboard
+                            <Button size={"sm"} variant={"outline"} asChild>
+                                <Link href={"/dashboard"}>Dashboard</Link>
                             </Button>
                             <SignoutButton />
                         </>

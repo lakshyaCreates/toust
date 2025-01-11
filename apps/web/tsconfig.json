@@ -20,7 +20,8 @@
         "next.config.mjs",
         "**/*.ts",
         "**/*.tsx",
-        ".next/types/**/*.ts"
+        ".next/types/**/*.ts",
+        "../../packages/ui/src/hooks/use-mobile.tsx"
     ],
     "exclude": ["node_modules"]
 }
