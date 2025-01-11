@@ -20,6 +20,8 @@ import { Textarea } from "@workspace/ui/components/textarea";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { addWebsite } from "@/queries";
+
 const addWebsiteFormSchema = z.object({
     domain: z
         .string()
@@ -67,7 +69,23 @@ export const AddWebsiteForm = () => {
     });
 
     async function onSubmit(values: AddWebsiteFormSchema) {
-        console.log("values", values);
+        startTransition(async () => {
+            await addWebsite({
+                domain: values.domain,
+                note: values.note,
+                userId,
+            })
+                .then(() => {
+                    toast.success("Website added");
+                    setOpen(false);
+                    return;
+                })
+                .catch((err) => {
+                    console.error(err);
+                    toast.error("Failed to add website");
+                    return;
+                });
+        });
     }
 
     return (

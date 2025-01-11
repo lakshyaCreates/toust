@@ -10,9 +10,10 @@ generator client {
 model Toast {
     id String @id @default(cuid())
 
-    title   String
+    text    String
     author  String
     timeAgo String
+    src     String @default("/toust-icon.png")
     order   Int
 
     websiteId String

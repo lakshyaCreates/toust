@@ -47,21 +47,21 @@ async function main() {
     const toastsWebsite1 = await prisma.toast.createMany({
         data: [
             {
-                title: "Just purchased our Premium Plan!",
+                text: "Just purchased our Premium Plan!",
                 author: "Sarah Johnson",
                 timeAgo: "2 minutes ago",
                 order: 1,
                 websiteId: website1.id,
             },
             {
-                title: "Upgraded to Business Package",
+                text: "Upgraded to Business Package",
                 author: "Mike Smith",
                 timeAgo: "5 minutes ago",
                 order: 2,
                 websiteId: website1.id,
             },
             {
-                title: "New subscription started",
+                text: "New subscription started",
                 author: "Emily Brown",
                 timeAgo: "10 minutes ago",
                 order: 3,
@@ -74,14 +74,14 @@ async function main() {
     const toastsWebsite2 = await prisma.toast.createMany({
         data: [
             {
-                title: 'New comment on "Getting Started"',
+                text: 'New comment on "Getting Started"',
                 author: "David Wilson",
                 timeAgo: "1 minute ago",
                 order: 1,
                 websiteId: website2.id,
             },
             {
-                title: "Subscribed to newsletter",
+                text: "Subscribed to newsletter",
                 author: "Lisa Anderson",
                 timeAgo: "3 minutes ago",
                 order: 2,

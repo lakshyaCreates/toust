@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 import { Separator } from "@workspace/ui/components/separator";
 import {
     SidebarInset,
@@ -6,6 +8,7 @@ import {
 } from "@workspace/ui/components/sidebar";
 
 import { AppSidebar } from "./_components/app-sidebar";
+import { getCurrentUser } from "@/queries";
 
 export default async function MainLayout({
     children,
@@ -14,6 +17,9 @@ export default async function MainLayout({
     children: React.ReactNode;
     breadcrumbs: React.ReactNode;
 }) {
+    const user = await getCurrentUser();
+    if (!user) redirect("/sign-in");
+
     return (
         <>
             <SidebarProvider>
