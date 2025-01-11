@@ -13,7 +13,8 @@
             }
         ],
         "declaration": false,
-        "declarationMap": false
+        "declarationMap": false,
+        "noImplicitAny": false
     },
     "include": [
         "next-env.d.ts",
